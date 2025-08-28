@@ -4,12 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>welcometocoma.com — Diário Musical</title>
+  
+  <!-- Carregamento do CSS para estilização -->
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Pré-carregamento de áudios para uma experiência mais rápida -->
   <link rel="preload" href="MP3/Coma - Rafa Farias.mp3" as="audio">
   <link rel="preload" href="MP3/Born Again (In Silence) - Rafa Farias.mp3" as="audio">
   <link rel="preload" href="MP3/The Voice That Betrays - Rafa Farias.mp3" as="audio">
   <link rel="preload" href="MP3/No More Chains - Rafa Farias.mp3" as="audio">
   <link rel="preload" href="MP3/Silence - Rafa Farias.mp3" as="audio">
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main id="app" class="app">
@@ -22,9 +26,8 @@
     </section>
 
     <!-- COMA (Página 2) -->
-    <section id="section-2" class="page page-audio"
-      data-title="COMA"
-      data-audio="MP3/coma.mp3"
+    <section id="section-2" class="page page-audio centered-layout"
+      data-audio="MP3/Coma - Rafa Farias.mp3"
       style="--bg-desktop: url('Desktop/1-COMA.jpg'); --bg-mobile: url('CELULAR/2COMACELULAR2.jpg');">
       <div class="overlay">
         <div class="controls">
@@ -43,9 +46,8 @@
     </section>
 
     <!-- BORN AGAIN (Página 3) -->
-    <section id="section-3" class="page page-audio"
-      data-title="BORN AGAIN (IN SILENCE)"
-      data-audio="MP3/bornagain.mp3"
+    <section id="section-3" class="page page-audio centered-layout"
+      data-audio="MP3/Born Again (In Silence) - Rafa Farias.mp3"
       style="--bg-desktop: url('Desktop/2-BORN-AGAIN.jpg'); --bg-mobile: url('CELULAR/3BORNAGAINCELULAR3.jpg');">
       <div class="overlay">
         <div class="controls">
@@ -64,9 +66,8 @@
     </section>
 
     <!-- THE VOICE (Página 4) -->
-    <section id="section-4" class="page page-audio"
-      data-title="THE VOICE THAT BETRAYS"
-      data-audio="MP3/voice.mp3"
+    <section id="section-4" class="page page-audio centered-layout"
+      data-audio="MP3/The Voice That Betrays - Rafa Farias.mp3"
       style="--bg-desktop: url('Desktop/3-THE-VOICE.jpg'); --bg-mobile: url('CELULAR/4THEVOICECELULAR4.jpg');">
       <div class="overlay">
         <div class="controls">
@@ -85,9 +86,8 @@
     </section>
 
     <!-- NO MORE CHAINS (Página 5) -->
-    <section id="section-5" class="page page-audio"
-      data-title="NO MORE CHAINS"
-      data-audio="MP3/nomorechains.mp3"
+    <section id="section-5" class="page page-audio centered-layout"
+      data-audio="MP3/No More Chains - Rafa Farias.mp3"
       style="--bg-desktop: url('Desktop/4-NO-MORE-CHAINS.jpg'); --bg-mobile: url('CELULAR/5NOMORECHAINSCELULAR5.jpg');">
       <div class="overlay">
         <div class="controls">
@@ -106,9 +106,8 @@
     </section>
 
     <!-- SILENCE (Página 6) -->
-    <section id="section-6" class="page page-audio"
-      data-title="SILENCE"
-      data-audio="MP3/silence.mp3"
+    <section id="section-6" class="page page-audio centered-layout"
+      data-audio="MP3/Silence - Rafa Farias.mp3"
       style="--bg-desktop: url('Desktop/5-SILENCE.jpg'); --bg-mobile: url('CELULAR/6SILENCECELULAR6.jpg');">
       <div class="overlay">
         <div class="controls">
@@ -160,7 +159,7 @@
           <!-- Substitua 'YOUR_VIDEO_ID' pelo ID do seu vídeo -->
           <iframe
             class="yt"
-            src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0&modestbranding=1"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
             title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -168,7 +167,8 @@
       </div>
     </section>
   </main>
-
+  
+  <!-- Carregamento do JavaScript no final do body para melhor performance -->
   <script src="script.js"></script>
 </body>
 </html>
