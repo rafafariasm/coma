@@ -5,90 +5,86 @@ const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 
 // ===== Navegação (scroll suave entre seções) =====
 function scrollToSection(id) {
-  const el = typeof id === 'string' ? qs(id) : id;
-  if (!el) return;
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  history.replaceState(null, '', id);
+    const el = typeof id === 'string' ? qs(id) : id;
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', id);
 }
 
 // Delegação de cliques nos botões
 document.addEventListener('click', (e) => {
-  const b = e.target.closest('button');
-  if (!b) return;
+    const b = e.target.closest('button');
+    if (!b) return;
 
-  // Evita abrir menu do botão direito nos players
-  if (b.classList.contains('play')) e.preventDefault();
+    // Evita abrir menu do botão direito nos players
+    if (b.classList.contains('play')) e.preventDefault();
 
-  const next = b?.dataset?.next;
-  const prev = b?.dataset?.prev;
-  const home = b?.dataset?.home;
-  if (next) { scrollToSection(next); }
-  if (prev) { scrollToSection(prev); }
-  if (home) { scrollToSection(home); }
+    const next = b?.dataset?.next;
+    const prev = b?.dataset?.prev;
+    const home = b?.dataset?.home;
+    if (next) { scrollToSection(next); }
+    if (prev) { scrollToSection(prev); }
+    if (home) { scrollToSection(home); }
 });
 
 // ===== Player de áudio por seção =====
 function formatTime(sec = 0) {
-  const m = Math.floor(sec / 60);
-  const s = Math.floor(sec % 60).toString().padStart(2, '0');
-  return `${m}:${s}`;
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
 }
 
 function setupSectionPlayer(section) {
-  const audio = qs('audio', section);
-  if (!audio) return;
+    const audio = qs('audio', section);
+    if (!audio) return;
 
-  // Fonte do áudio (vinda do data-attribute)
-  const src = section.dataset.audio;
-  if (src) audio.src = src;
+    const src = section.dataset.audio;
+    if (src) audio.src = src;
 
-  const player = qs('.player', section);
-  const playBtn = qs('.play', section);
-  const seek = qs('.seek', section);
-  const tCur = qs('.current', section);
-  const tDur = qs('.duration', section);
+    const player = qs('.player', section);
+    const playBtn = qs('.play', section);
+    const seek = qs('.seek', section);
+    const tCur = qs('.current', section);
+    const tDur = qs('.duration', section);
 
-  // Evita "salvar como" no clique direito do áudio
-  audio.addEventListener('contextmenu', (e) => e.preventDefault());
-  section.addEventListener('contextmenu', (e) => {
-    if (e.target.tagName.toLowerCase() === 'audio') e.preventDefault();
-  });
+    // Evita "salvar como" no clique direito do áudio
+    audio.addEventListener('contextmenu', (e) => e.preventDefault());
+    section.addEventListener('contextmenu', (e) => {
+        if (e.target.tagName.toLowerCase() === 'audio') e.preventDefault();
+    });
 
-  // Atualiza duração quando os metadados carregarem
-  audio.addEventListener('loadedmetadata', () => {
-    tDur.textContent = formatTime(audio.duration || 0);
-  });
+    audio.addEventListener('loadedmetadata', () => {
+        tDur.textContent = formatTime(audio.duration || 0);
+    });
 
-  // Botão play/pause
-  playBtn.addEventListener('click', () => {
-    if (audio.paused) {
-      // Pausa todos os outros players antes de tocar este
-      qsa('audio').forEach(a => { if (a !== audio) a.pause(); });
-      audio.play().catch(() => {});
-      player.classList.add('paused'); // alterna o ícone para "pause"
-    } else {
-      audio.pause();
-      player.classList.remove('paused');
-    }
-  });
+    playBtn.addEventListener('click', () => {
+        if (audio.paused) {
+            // Pausa outros áudios antes de tocar o atual
+            qsa('audio').forEach(a => { if (a !== audio) a.pause(); });
+            audio.play().catch(() => {});
+            player.classList.add('paused');
+        } else {
+            audio.pause();
+            player.classList.remove('paused');
+        }
+    });
 
-  // Atualiza barra de progresso
-  audio.addEventListener('timeupdate', () => {
-    const pct = (audio.currentTime / (audio.duration || 1)) * 100;
-    seek.value = pct || 0;
-    tCur.textContent = formatTime(audio.currentTime || 0);
-  });
+    audio.addEventListener('timeupdate', () => {
+        const pct = (audio.currentTime / (audio.duration || 1)) * 100;
+        seek.value = pct || 0;
+        tCur.textContent = formatTime(audio.currentTime || 0);
+    });
 
-  // Seek manual
-  seek.addEventListener('input', () => {
-    const pct = parseFloat(seek.value);
-    audio.currentTime = (pct / 100) * (audio.duration || 0);
-  });
+    // Seek manual
+    seek.addEventListener('input', () => {
+        const pct = parseFloat(seek.value);
+        audio.currentTime = (pct / 100) * (audio.duration || 0);
+    });
 
-  // Quando terminar, volta o botão para "play"
-  audio.addEventListener('ended', () => {
-    player.classList.remove('paused');
-  });
+    // Quando terminar, volta o botão para "play"
+    audio.addEventListener('ended', () => {
+        player.classList.remove('paused');
+    });
 }
 
 // Inicializa todos os players de seções com áudio
@@ -115,8 +111,3 @@ window.addEventListener('load', () => {
   const el = qs(id);
   if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
 });
-
-// ===== Bloqueios adicionais do áudio =====
-// Observação: não existe forma 100% garantida de impedir download,
-// mas escondemos o botão de download (controlslist) e desabilitamos
-// o menu de contexto no elemento <audio>.
