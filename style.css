@@ -30,6 +30,8 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   align-items: end;
   padding: clamp(12px, 3vw, 24px);
   gap: 16px;
+  /* Adição: ponto de referência para os elementos absolutos */
+  position: relative;
 }
 
 /* ===== Botões ===== */
@@ -58,8 +60,12 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
 /* Contêiner dos botões de navegação */
 .controls {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Ajuste: Alinha os botões à esquerda */
   gap: 10px;
+  /* Adições: Posicionamento absoluto no canto inferior esquerdo */
+  position: absolute;
+  bottom: clamp(12px, 3vw, 24px);
+  left: clamp(12px, 3vw, 24px);
 }
 .controls.end { justify-content: center; }
 
@@ -70,7 +76,11 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   align-items: center;
   gap: 12px;
   width: min(420px, 40vw);
-  margin-left: 65%, 17svh;
+  /* Remoção: linha incorreta de margin-left */
+  /* Adições: Posicionamento absoluto logo acima dos controles */
+  position: absolute;
+  bottom: clamp(65px, 8vw, 80px);
+  left: clamp(12px, 3vw, 24px);
   padding: 10px 12px;
   background: rgba(0,0,0,0.55);
   border: 1px solid rgba(178,255,79,0.6);
