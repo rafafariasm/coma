@@ -38,9 +38,9 @@ body { 
   gap: 16px;
 }
 
-/* Nova classe para centralizar o conteúdo do overlay apenas na página 'COMA' */
-.centered-overlay {
-  justify-content: center;
+/* Nova classe para centralizar o player na página 'COMA' */
+.centered-layout {
+  justify-items: center;
   align-items: center;
 }
 
@@ -74,12 +74,6 @@ body { 
   gap: 10px;
   margin-bottom: 20px;
 }
-
-/* Ajusta o layout dos botões quando centralizado */
-.centered-overlay .controls {
-  justify-content: center;
-}
-
 .controls.end { justify-content: flex-start; }
 
 /* Player minimalista sem botão de download */
@@ -156,13 +150,5 @@ button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
   }
   .controls {
     justify-content: flex-start;
-  }
-  /* Ajusta o alinhamento no mobile para o overlay centralizado */
-  .centered-overlay {
-    align-items: center;
-    justify-items: center;
-  }
-  .centered-overlay .controls {
-    justify-content: center;
   }
 }
