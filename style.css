@@ -32,6 +32,11 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   gap: 16px;
 }
 
+/* Nova classe para centralizar o player na página 'COMA' */
+.centered-layout {
+  justify-items: center;
+}
+
 /* ===== Botões ===== */
 .btn {
   appearance: none;
@@ -58,10 +63,10 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
 /* Contêiner dos botões de navegação */
 .controls {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Alinha os botões à esquerda para a maioria das páginas */
   gap: 10px;
 }
-.controls.end { justify-content: center; }
+.controls.end { justify-content: flex-start; }
 
 /* ===== Player minimalista sem botão de download ===== */
 .player {
@@ -70,7 +75,7 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   align-items: center;
   gap: 12px;
   width: min(420px, 40vw);
-  margin: 0 auto 10svh, 350%;
+  margin: 0;
   padding: 10px 12px;
   background: rgba(0,0,0,0.55);
   border: 1px solid rgba(178,255,79,0.6);
@@ -123,3 +128,19 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
 /* Acessibilidade e utilidades */
 button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+/* Layout para telas pequenas (mobile) */
+@media (max-width: 768px) {
+  .overlay {
+    align-items: start;
+    justify-items: start;
+    gap: 8px;
+  }
+  .player {
+    margin-top: 0;
+    width: min(300px, 80vw);
+  }
+  .controls {
+    justify-content: flex-start;
+  }
+}
