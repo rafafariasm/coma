@@ -64,38 +64,20 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
 .controls.end { justify-content: center; }
 
 /* ===== Player minimalista sem botão de download ===== */
-/* Container que envolve o título + player */
-.player-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* centraliza horizontalmente */
-  gap: 8px; /* espaço entre o título e o player */
-  margin: 0 auto 10svh;
-}
-
-/* O título */
-.player-title {
-  font-size: 14px;
-  text-transform: uppercase;
-  color: #b2ff4f;
-  margin-bottom: 4px;
-}
-
-/* O player em si */
 .player {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 12px;
   width: min(720px, 92vw);
+  margin: 0 auto 10svh;
   padding: 10px 12px;
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(178, 255, 79, 0.6);
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(178,255,79,0.6);
   border-radius: 16px;
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
-
 .player .play {
   width: 44px; height: 44px; border-radius: 999px;
   border: 1px solid #b2ff4f; background: transparent; cursor: pointer;
@@ -141,4 +123,3 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
 /* Acessibilidade e utilidades */
 button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-
