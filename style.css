@@ -69,8 +69,8 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 12px;
-  width: min(680px, 72vw);
-  margin: 0 auto 10svh, 40%;
+  width: min(420px, 52vw);
+  margin: 0 auto 10svh, 80%;
   padding: 10px 12px;
   background: rgba(0,0,0,0.55);
   border: 1px solid rgba(178,255,79,0.6);
