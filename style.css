@@ -123,3 +123,50 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
 /* Acessibilidade e utilidades */
 button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+/* ===== Ajustes responsivos extras ===== */
+
+/* Player em telas menores */
+@media (max-width: 600px) {
+  .player {
+    grid-template-columns: 1fr; /* botão play em cima, barra embaixo */
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 5svh;
+  }
+  .player .play {
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+  }
+  .time {
+    justify-content: center;
+    font-size: 11px;
+  }
+}
+
+/* Botões mais acessíveis em telas pequenas */
+@media (max-width: 480px) {
+  .btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  .controls {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .controls .btn {
+    flex: 1 1 auto; /* botões ocupam largura proporcional */
+    text-align: center;
+  }
+}
+
+/* Para telas muito largas (monitores grandes) */
+@media (min-width: 1400px) {
+  .player {
+    width: 900px;
+  }
+  .video-wrap {
+    width: 1100px;
+  }
+}
