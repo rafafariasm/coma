@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No More Chains</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* Estilos gerais para o conteúdo da página */
+        #page-content {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: background-image 1s ease-in-out;
+        }
+
+        /* Estilos específicos para o player de áudio */
+        .audio-player-container {
+            position: absolute;
+            bottom: 5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .audio-player-container button {
+            background-color: #6cff00;
+            border-radius: 9999px;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        .audio-player-container button:hover {
+            transform: scale(1.1);
+        }
+
+        .audio-player-container button svg {
+            fill: #000;
+        }
+
+        .progress-bar-wrapper {
+            width: 200px;
+            height: 5px;
+            background-color: #333;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #6cff00;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            color: #6cff00;
+            font-size: 0.875rem;
+        }
+
+        /* Estilos para os botões de navegação */
+        .navigation-buttons {
+            position: absolute;
+            bottom: 2vh;
+            display: flex;
+            gap: 2rem;
+            z-index: 10;
+        }
+
+        .navigation-buttons button {
+            background-color: transparent;
+            border: 2px solid #6cff00;
+            color: #6cff00;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        
+        .navigation-buttons button:hover {
+            background-color: #6cff00;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Conteúdo dinâmico da página será inserido aqui -->
+    <div id="page-content" class="flex flex-col items-center justify-center p-8">
+        <!-- O conteúdo de cada página será injetado por JavaScript -->
+    </div>
+
+    <!-- Container do player de áudio -->
+    <div class="audio-player-container">
+        <h2 id="song-title" class="text-xl text-green-500 mb-4"></h2>
+        <div class="flex items-center space-x-4">
+            <audio id="audio-player"></audio>
+            <button id="play-pause-btn" class="flex items-center justify-center p-2 rounded-full shadow-lg bg-green-500">
+                <svg id="play-icon" class="w-6 h-6" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                </svg>
+                <svg id="pause-icon" class="w-6 h-6 hidden" viewBox="0 0 24 24">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                </svg>
+            </button>
+            <div class="w-64 h-2 bg-gray-700 rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full bg-green-500 transition-all" style="width: 0%;"></div>
+            </div>
+            <div class="text-xs text-gray-400">
+                <span id="current-time">0:00</span> / <span id="total-time">0:00</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container dos botões de navegação -->
+    <div id="navigation-buttons" class="hidden fixed bottom-8 flex space-x-8">
+        <button id="back-btn" class="px-8 py-3 rounded-md text-green-500 border-2 border-green-500 hover:bg-green-500 hover:text-black transition">BACK</button>
+        <button id="next-btn" class="px-8 py-3 rounded-md text-green-500 border-2 border-green-500 hover:bg-green-500 hover:text-black transition">NEXT</button>
+    </div>
+
+    <script>
+        // Mapeamento das páginas e seus arquivos
+        const pages = [
+            {
+                id: '0-INICIO',
+                desktopImg: 'Desktop/0-INICIO.jpg',
+                mobileImg: 'Celular/1BEMVINDOCELULAR1.jpg',
+                hasPlayer: false,
+                hasNav: false,
+                title: 'No More Chains - Início',
+                content: `<div class="flex justify-center items-center h-screen w-screen">
+                            <img src="Desktop/0-INICIO.jpg" class="w-2/3 md:w-1/2 lg:w-1/3" alt="Logo da página inicial">
+                          </div>`
+            },
+            {
+                id: '1-COMA',
+                desktopImg: 'Desktop/1-COMA.jpg',
+                mobileImg: 'Celular/2COMACELULAR2.jpg',
+                hasPlayer: true,
+                hasNav: true,
+                title: 'No More Chains - Coma',
+                audio: 'MP3/coma.mp3',
+                songTitle: 'COMA',
+                content: `<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8">
+                            <div class="text-sm space-y-4 lg:col-span-1">
+                                <p>A liberdade come&ccedil;a quando se rejeita o molde. Nem todas as pris&otilde;es t&ecirc;m grades, muitas t&ecirc;m padr&otilde;es. N&atilde;o h&aacute; volta quando se sente o gosto de si mesmo.</p>
+                                <p>Freedom begins when you reject the mold. Not all prisons have bars, many wear patterns. Once you taste yourself, there's no turning back.</p>
+                            </div>
+                            <div class="text-sm space-y-4 lg:col-span-1">
+                                <p>Your chances slipped away<br>Without knowing the cost<br>Tried day after day<br>Since was lost<br>So confused<br>By the new<br>Still I walk unafraid<br>Like a hole in the soul pulling through<br><br>Like a darkened room<br>Covering my eyes<br>Blinding my desire<br>Pouring in the fear<br><br>Keep me away<br>From the poison<br>Free from your mental cell</p>
+                            </div>
+                            <div class="lg:col-span-1 flex justify-center items-center">
+                                <img src="Desktop/1-COMA.jpg" class="max-w-full h-auto" alt="Arte da m&uacute;sica Coma">
+                            </div>
+                         </div>`
+            },
+            {
+                id: '2-BORN-AGAIN',
+                desktopImg: 'Desktop/2-BORN-AGAIN.jpg',
+                mobileImg: 'Celular/3BORNAGAINCELULAR3.jpg',
+                hasPlayer: true,
+                hasNav: true,
+                title: 'No More Chains - Born Again',
+                audio: 'MP3/bornagain.mp3',
+                songTitle: 'BORN AGAIN',
+                content: `<div class="flex flex-col items-center justify-center text-center p-8">
+                            <img src="Desktop/2-BORN-AGAIN.jpg" class="w-1/2 mb-8" alt="Arte da m&uacute;sica Born Again">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                                <p>A luz vem me perseguindo<br>Pelas ru&iacute;nas das minhas escolhas<br>Eu quero paz<br>Paz<br>Uma liberdade que eu nunca tive<br>Para me encontrar<br>N&atilde;o h&aacute; como voltar agora<br>Deixe-me ir para onde n&atilde;o h&aacute; dor<br>Me liberte<br>E me leve para um lugar onde eu possa ver de novo</p>
+                                <p>The light is chasing me<br>Through the ruins of my choices<br>I want peace<br>Peace<br>A freedom I've never had<br>To find myself<br>There's no going back now<br>Let me go where there's no pain<br>Set me free<br>And take me to a place where I can see again</p>
+                            </div>
+                        </div>`
+            },
+            {
+                id: '3-THE-VOICE',
+                desktopImg: 'Desktop/3-THE-VOICE.jpg',
+                mobileImg: 'Celular/4THEVOICECELLULAR4.jpg',
+                hasPlayer: true,
+                hasNav: true,
+                title: 'No More Chains - The Voice',
+                audio: 'MP3/voice.mp3',
+                songTitle: 'THE VOICE',
+                content: `<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 items-center">
+                            <div class="text-sm space-y-4">
+                                <p>A voz ecoa e n&atilde;o para de me assombrar.<br>Eu tento fugir, mas n&atilde;o h&aacute; sa&iacute;da. A minha vis&atilde;o est&aacute; turva, eu n&atilde;o vejo nada...<br><br>The voice echoes and doesn't stop haunting me. I try to escape, but there's no way out. My vision is blurred, I see nothing...</p>
+                            </div>
+                            <div class="text-sm space-y-4">
+                                <p>I am haunted by the voices from the past<br>A constant whisper, a painful echo that will last<br>I try to run, but they're always there<br>A heavy burden, a weight to bear<br><br>My vision's blurred, I cannot see<br>Lost in a fog of memories<br>A desperate plea, a silent cry<br>To break free from this painful lie</p>
+                            </div>
+                        </div>`
+            },
+            {
+                id: '4-NO-MORE-CHAINS',
+                desktopImg: 'Desktop/4-NO-MORE-CHAINS.jpg',
+                mobileImg: 'Celular/5NOMORECHAINSCELULARS.jpg',
+                hasPlayer: true,
+                hasNav: true,
+                title: 'No More Chains - Sem Correntes',
+                audio: 'MP3/nomorechains.mp3',
+                songTitle: 'NO MORE CHAINS',
+                content: `<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 items-center">
+                            <div class="text-sm space-y-4">
+                                <p>No More Chains - A liberdade &eacute; o &uacute;nico caminho.<br><br>No More Chains - freedom is the only way.</p>
+                            </div>
+                            <div class="text-sm space-y-4">
+                                <p>A liberdade come&ccedil;a quando se rejeita o molde. N&atilde;o h&aacute; volta quando se sente o gosto de si mesmo.</p>
+                                <p>Freedom begins when you reject the mold. Once you taste yourself, there's no turning back.</p>
+                            </div>
+                         </div>`
+            },
+            {
+                id: '5-SILENCE',
+                desktopImg: 'Desktop/5-SILENCE.jpg',
+                mobileImg: 'Celular/6SILENCECELULAR6.jpg',
+                hasPlayer: true,
+                hasNav: true,
+                title: 'No More Chains - Silêncio',
+                audio: 'MP3/silence.mp3',
+                songTitle: 'SILENCE',
+                content: `<div class="flex flex-col lg:flex-row justify-center items-center gap-8 p-8">
+                            <img src="Desktop/5-SILENCE.jpg" class="max-w-full h-auto" alt="Imagem da m&uacute;sica Silence">
+                            <div class="text-sm space-y-4">
+                                <p>Sometimes the silence hurts the most<br>A quiet prison, a lonely ghost<br>I long for noise, a comforting sound<br>To break the stillness, all around<br><br>The silence whispers, a chilling dread<br>Words unsaid, and hopes unread<br>In this vast emptiness, I'm all alone<br>A silent scream, a heart of stone</p>
+                            </div>
+                         </div>`
+            },
+            {
+                id: '6-RELEASE',
+                desktopImg: 'Desktop/6-release.jpg',
+                mobileImg: 'Celular/7RELEASECELULAR7.jpg',
+                hasPlayer: true,
+                hasNav: true,
+                title: 'No More Chains - Libertação',
+                audio: 'MP3/nomorechains.mp3', // Usando a mesma m&uacute;sica por falta de um arquivo espec&iacute;fico
+                songTitle: 'RELEASE',
+                content: `<div class="flex flex-col lg:flex-row justify-center items-center gap-8 p-8">
+                            <div class="text-sm space-y-4">
+                                <p>Uma can&ccedil;&atilde;o de liberdade, um hino de vit&oacute;ria<br>A alma em ascens&atilde;o, a gl&oacute;ria de sua hist&oacute;ria<br>N&atilde;o h&aacute; mais correntes para te prender<br>O c&eacute;u &eacute; o limite, &eacute; hora de viver<br><br>An anthem of freedom, a hymn of victory<br>The soul is ascending, the glory of history<br>No more chains to hold you down<br>The sky is the limit, it's time to live now</p>
+                            </div>
+                            <img src="Desktop/6-release.jpg" class="max-w-full h-auto" alt="Imagem da m&uacute;sica Release">
+                         </div>`
+            },
+            {
+                id: '7-GALERIA-FOTOS',
+                desktopImg: 'Desktop/7-GALERIA-FOTOS.jpg',
+                mobileImg: 'Celular/8GALLERYCELULAR8.jpg',
+                hasPlayer: false,
+                hasNav: true,
+                title: 'No More Chains - Galeria',
+                content: `<div class="flex flex-col items-center p-8">
+                            <h1 class="text-3xl text-green-500 mb-8">GALERIA DE FOTOS</h1>
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+                                <!-- As imagens ser&atilde;o carregadas dinamicamente -->
+                                <img src="Desktop/7-GALERIA-FOTOS.jpg" alt="Galeria de fotos" class="w-full h-auto rounded-lg shadow-lg">
+                            </div>
+                         </div>`
+            },
+            {
+                id: '8-FUNDO-VIDEO',
+                desktopImg: 'Desktop/8-FUNDO-VIDEO.jpg',
+                mobileImg: 'Celular/9FUNDOCELULAR9.jpg',
+                hasPlayer: true,
+                hasNav: true,
+                title: 'No More Chains - Vídeo',
+                audio: 'MP3/voice.mp3', // Exemplo
+                songTitle: 'FUNDO VÍDEO',
+                content: `<div class="flex flex-col items-center justify-center h-full w-full p-8">
+                            <h1 class="text-3xl text-green-500 mb-8">V&Iacute;DEO</h1>
+                            <!-- Embed do v&iacute;deo aqui -->
+                            <div class="relative w-full" style="padding-top: 56.25%;">
+                                <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                         </div>`
+            }
+        ];
+
+        // Variáveis de controle
+        let currentPageIndex = 0;
+        const pageContent = document.getElementById('page-content');
+        const audioPlayer = document.getElementById('audio-player');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const progressbar = document.getElementById('progress-bar');
+        const navigationButtons = document.getElementById('navigation-buttons');
+        const backBtn = document.getElementById('back-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const songTitle = document.getElementById('song-title');
+        const currentTimeEl = document.getElementById('current-time');
+        const totalTimeEl = document.getElementById('total-time');
+
+        // Função para carregar uma página
+        const loadPage = (index) => {
+            const page = pages[index];
+            currentPageIndex = index;
+            document.title = page.title;
+            
+            // Define o conteúdo da página
+            pageContent.innerHTML = page.content;
+            
+            // Define a imagem de fundo com transição
+            const backgroundImg = window.innerWidth <= 768 ? page.mobileImg : page.desktopImg;
+            pageContent.style.backgroundImage = `url(${backgroundImg})`;
+            
+            // Lógica para o player de áudio
+            if (page.hasPlayer && page.audio) {
+                audioPlayer.src = page.audio;
+                songTitle.textContent = page.songTitle;
+                playPauseBtn.style.display = 'flex';
+                songTitle.style.display = 'block';
+                // Reset player
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            } else {
+                playPauseBtn.style.display = 'none';
+                songTitle.style.display = 'none';
+            }
+
+            // Lógica para os botões de navegação
+            if (page.hasNav) {
+                navigationButtons.classList.remove('hidden');
+            } else {
+                navigationButtons.classList.add('hidden');
+            }
+
+            // Atualiza o estado dos botões de navegação
+            backBtn.disabled = currentPageIndex === 0;
+            nextBtn.disabled = currentPageIndex === pages.length - 1;
+        };
+
+        // Evento de click para o botão play/pause
+        playPauseBtn.addEventListener('click', () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            } else {
+                audioPlayer.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            }
+        });
+
+        // Evento para atualizar a barra de progresso
+        audioPlayer.addEventListener('timeupdate', () => {
+            const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progressbar.style.width = `${progress}%`;
+
+            const formatTime = (seconds) => {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = Math.floor(seconds % 60);
+                return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+            };
+            
+            currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+            if (audioPlayer.duration) {
+                totalTimeEl.textContent = formatTime(audioPlayer.duration);
+            }
+        });
+
+        // Navegação entre as páginas
+        backBtn.addEventListener('click', () => {
+            if (currentPageIndex > 0) {
+                loadPage(currentPageIndex - 1);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentPageIndex < pages.length - 1) {
+                loadPage(currentPageIndex + 1);
+            }
+        });
+        
+        // Carrega a primeira página ao iniciar
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPage(0);
+        });
+
+        // Lidar com a redimensionamento da janela
+        window.addEventListener('resize', () => {
+            loadPage(currentPageIndex);
+        });
+
+    </script>
+
+</body>
+</html>
