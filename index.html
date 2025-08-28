@@ -25,7 +25,7 @@
         <section id="section-2" class="page page-audio centered-layout"
       data-audio="MP3/coma.mp3"
       style="--bg-desktop: url('Desktop/1-COMA.jpg'); --bg-mobile: url('CELULAR/2COMACELULAR2.jpg');">
-      <div class="overlay centered-overlay">
+      <div class="overlay">
         <div class="controls">
           <button class="btn" data-prev="#section-1" aria-label="Voltar">BACK</button>
           <button class="btn" data-next="#section-3" aria-label="Próximo">NEXT</button>
@@ -105,57 +105,57 @@
         <div class="controls">
           <button class="btn" data-prev="#section-5" aria-label="Voltar">BACK</button>
           <button class="btn" data-next="#section-7" aria-label="Próximo">NEXT</button>
-          </div>
-          <div class="player">
-            <button class="play" aria-label="Tocar/Pausar"></button>
-            <div class="track">
-              <input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Linha do tempo">
-              <div class="time"><span class="current">0:00</span> / <span class="duration">0:00</span></div>
-            </div>
-            <audio preload="auto" controlslist="nodownload noplaybackrate"></audio>
-          </div>
         </div>
-      </section>
+        <div class="player">
+          <button class="play" aria-label="Tocar/Pausar"></button>
+          <div class="track">
+            <input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Linha do tempo">
+            <div class="time"><span class="current">0:00</span> / <span class="duration">0:00</span></div>
+          </div>
+          <audio preload="auto" controlslist="nodownload noplaybackrate"></audio>
+        </div>
+      </div>
+    </section>
 
-            <section id="section-7" class="page"
-        style="--bg-desktop: url('Desktop/6-release.jpg'); --bg-mobile: url('CELULAR/7RELEASECELULAR7.jpg');">
-        <div class="overlay">
-          <div class="controls">
-            <button class="btn" data-prev="#section-6" aria-label="Voltar">BACK</button>
-            <button class="btn" data-next="#section-8" aria-label="Próximo">NEXT</button>
-          </div>
+        <section id="section-7" class="page"
+      style="--bg-desktop: url('Desktop/6-release.jpg'); --bg-mobile: url('CELULAR/7RELEASECELULAR7.jpg');">
+      <div class="overlay">
+        <div class="controls">
+          <button class="btn" data-prev="#section-6" aria-label="Voltar">BACK</button>
+          <button class="btn" data-next="#section-8" aria-label="Próximo">NEXT</button>
         </div>
-      </section>
+      </div>
+    </section>
 
-            <section id="section-8" class="page"
-        style="--bg-desktop: url('Desktop/7-GALERIA-FOTOS.jpg'); --bg-mobile: url('CELULAR/8GALLERYCELULAR8.jpg');">
-        <div class="overlay">
-          <div class="controls">
-            <button class="btn" data-prev="#section-7" aria-label="Voltar">BACK</button>
-            <button class="btn" data-next="#section-9" aria-label="Próximo">NEXT</button>
-          </div>
+        <section id="section-8" class="page"
+      style="--bg-desktop: url('Desktop/7-GALERIA-FOTOS.jpg'); --bg-mobile: url('CELULAR/8GALLERYCELULAR8.jpg');">
+      <div class="overlay">
+        <div class="controls">
+          <button class="btn" data-prev="#section-7" aria-label="Voltar">BACK</button>
+          <button class="btn" data-next="#section-9" aria-label="Próximo">NEXT</button>
         </div>
-      </section>
+      </div>
+    </section>
 
-            <section id="section-9" class="page"
-        style="--bg-desktop: url('Desktop/8-FUNDO-VIDEO.jpg'); --bg-mobile: url('CELULAR/9FUNDOCELULAR9.jpg');">
-        <div class="overlay">
-          <div class="controls end">
-            <button class="btn" data-prev="#section-8" aria-label="Voltar">BACK</button>
-            <button class="btn" data-home="#section-1" aria-label="Home">HOME</button>
-          </div>
-          <div class="video-wrap" role="region" aria-label="Vídeo do YouTube">
-                        <iframe
-              class="yt"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
-              title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
+        <section id="section-9" class="page"
+      style="--bg-desktop: url('Desktop/8-FUNDO-VIDEO.jpg'); --bg-mobile: url('CELULAR/9FUNDOCELULAR9.jpg');">
+      <div class="overlay">
+        <div class="controls end">
+          <button class="btn" data-prev="#section-8" aria-label="Voltar">BACK</button>
+          <button class="btn" data-home="#section-1" aria-label="Home">HOME</button>
         </div>
-      </section>
-    </main>
-    
-        <script src="script.js"></script>
+        <div class="video-wrap" role="region" aria-label="Vídeo do YouTube">
+                    <iframe
+            class="yt"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+    <script src="script.js"></script>
 </body>
 </html>
