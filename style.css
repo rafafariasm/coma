@@ -1,10 +1,10 @@
-/* ===== Reset básico ===== */
+/* ===== Reset bÃĄsico ===== */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
 body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
        background: #000; color: #e5e5e5; overflow-x: hidden; }
 
-/* ===== Layout das páginas ===== */
+/* ===== Layout das pÃĄginas ===== */
 .app { width: 100%; }
 .page {
   position: relative;
@@ -14,7 +14,7 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* Troca automática do fundo por breakpoint */
+  /* Troca automÃĄtica do fundo por breakpoint */
   background-image: var(--bg-desktop);
 }
 @media (max-width: 768px) {
@@ -30,15 +30,13 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   align-items: end;
   padding: clamp(12px, 3vw, 24px);
   gap: 16px;
-  /* Adição: ponto de referência para os elementos absolutos */
-  position: relative;
 }
 
-/* ===== Botões ===== */
+/* ===== BotÃĩes ===== */
 .btn {
   appearance: none;
   background: rgba(0, 0, 0, 0.65);
-  color: #b2ff4f; /* verde ácido como no mapa */
+  color: #b2ff4f; /* verde ÃĄcido como no mapa */
   border: 1px solid #b2ff4f;
   border-radius: 999px;
   padding: 10px 18px;
@@ -57,29 +55,22 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   font-weight: 700;
 }
 
-/* Contêiner dos botões de navegação */
+/* ContÃŠiner dos botÃĩes de navegaÃ§ÃĢo */
 .controls {
   display: flex;
-  justify-content: flex-start; /* Ajuste: Alinha os botões à esquerda */
+  justify-content: center;
   gap: 10px;
-  /* Adições: Posicionamento absoluto no canto inferior esquerdo */
-  position: absolute;
-  bottom: clamp(12px, 3vw, 24px);
-  left: clamp(12px, 3vw, 24px);
 }
 .controls.end { justify-content: center; }
 
-/* ===== Player minimalista sem botão de download ===== */
+/* ===== Player minimalista sem botÃĢo de download ===== */
 .player {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 12px;
   width: min(420px, 40vw);
-  /* Adições: Posicionamento absoluto logo acima dos controles */
-  position: absolute;
-  bottom: clamp(65px, 8vw, 80px);
-  left: clamp(12px, 3vw, 24px); /* Ajuste: para alinhar com os botões de navegação */
+  margin: 0 auto 10svh, 350%;
   padding: 10px 12px;
   background: rgba(0,0,0,0.55);
   border: 1px solid rgba(178,255,79,0.6);
@@ -117,7 +108,7 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
 .seek::-moz-range-thumb { width: 14px; height: 14px; border-radius: 999px; background: #b2ff4f; border: 1px solid #b2ff4f; }
 .time { font-size: 12px; color: #c6ffc3; display: flex; gap: 6px; justify-content: flex-end; }
 
-/* Vídeo responsivo */
+/* VÃ­deo responsivo */
 .video-wrap {
   width: min(900px, 92vw);
   aspect-ratio: 16 / 9;
