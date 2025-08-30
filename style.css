@@ -128,12 +128,26 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   .controls {
     justify-content: center;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 0;
   }
   
   .btn {
     min-width: 80px;
     text-align: center;
+  }
+  
+  /* Remover rotações e posicionamentos específicos anteriores */
+  #section-2 .player, #section-3 .player, #section-4 .player, 
+  #section-5 .player, #section-6 .player,
+  #section-2 .controls, #section-3 .controls, #section-4 .controls, 
+  #section-5 .controls, #section-6 .controls,
+  #section-7 .controls, #section-8 .controls {
+    transform: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
   }
 }
 
@@ -157,7 +171,7 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
 @media (max-width: 480px) {
   .player {
     width: min(300px, 90vw);
-    margin: 0 auto;
+    margin: 0 auto 15px auto;
   }
   
   .music-controls-container {
@@ -166,6 +180,14 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .controls {
+    margin-top: 10px;
   }
 }
 .player .play {
