@@ -234,25 +234,25 @@ button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
   #section-5 .player-centered, #section-6 .player-centered {
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 50px;
+    margin-bottom: 30px; /* Reduzido para aproximar os botões */
     position: relative;
     /* Valores iniciais para posicionamento */
-    --player-top: 0;
+    --player-top: 30px; /* Movido para baixo */
     --player-left: 0;
     top: var(--player-top);
     left: var(--player-left);
   }
   
   /* Controles específicos para cada seção */
-  #section-3 .player-centered { --player-top: 0px; --player-left: 0px; }
-  #section-4 .player-centered { --player-top: 0px; --player-left: 0px; }
-  #section-5 .player-centered { --player-top: 0px; --player-left: 0px; }
-  #section-6 .player-centered { --player-top: 0px; --player-left: 0px; }
+  #section-3 .player-centered { --player-top: 30px; --player-left: 0px; }
+  #section-4 .player-centered { --player-top: 30px; --player-left: 0px; }
+  #section-5 .player-centered { --player-top: 30px; --player-left: 0px; }
+  #section-6 .player-centered { --player-top: 30px; --player-left: 0px; }
   
   /* Controles separados para botões nas seções 3, 4, 5 e 6 */
   #section-3 .controls-centered, #section-4 .controls-centered, 
   #section-5 .controls-centered, #section-6 .controls-centered {
-    margin-top: 20px;
+    margin-top: 0; /* Removido para alinhar com o player */
     position: relative;
     /* Valores iniciais para posicionamento */
     --controls-top: 0;
@@ -266,6 +266,16 @@ button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
   #section-4 .controls-centered { --controls-top: 0px; --controls-left: 0px; }
   #section-5 .controls-centered { --controls-top: 0px; --controls-left: 0px; }
   #section-6 .controls-centered { --controls-top: 0px; --controls-left: 0px; }
+  
+  /* Alinhamento dos botões com os players */
+  #section-3 .music-controls-container,
+  #section-4 .music-controls-container,
+  #section-5 .music-controls-container,
+  #section-6 .music-controls-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
   /* Rotação vertical e centralização dos botões nas seções 7 e 8 */
   #section-7 .controls, #section-8 .controls {
@@ -289,7 +299,7 @@ button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
   
   /* Ajuste do player para dispositivos móveis */
   .player {
-    width: min(80vw, 300px);
+    width: min(70vw, 250px); /* Tamanho reduzido para celulares */
   }
   
   /* Ajustes adicionais para garantir responsividade em simulação de celular */
