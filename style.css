@@ -188,7 +188,7 @@ button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
 #section-4 .controls,
 #section-5 .controls,
 #section-6 .controls {
-  margin-left: 5%; /* Valor inicial, ajuste conforme necessário */
+  margin-left: 7%; /* Valor inicial, ajuste conforme necessário */
 }
 
 /* Layout para telas pequenas (mobile) */
