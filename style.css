@@ -190,6 +190,22 @@ button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
   margin-bottom: 10px;
 }
 
+/* Título invisível para servir como âncora */
+.title-anchor {
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 3%;
+  text-align: left;
+  font-size: 0;
+  line-height: 0;
+  opacity: 0;
+}
+
 /* Posicionamento específico para seções 3, 4, 5 e 6 */
 #section-3 .music-controls-container,
 #section-4 .music-controls-container,
