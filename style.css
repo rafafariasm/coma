@@ -48,14 +48,15 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
     justify-content: center;
   }
   
+  /* Botões das seções 7 e 8 na vertical, alinhados com a linha horizontal do meio */
   #section-7 .controls, #section-8 .controls {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
+    left: 15%; /* Próximo à parede esquerda */
+    transform: translateY(-50%);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
   }
 }
 
@@ -188,7 +189,7 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
 @media (max-width: 480px) {
   .player {
     width: min(300px, 90vw);
-    margin: 0 auto 15px auto;
+    margin: 0 auto 10px auto; /* Reduzido para aproximar os botões */
   }
   
   .music-controls-container {
@@ -203,8 +204,17 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
     transform: translate(-50%, -50%);
   }
   
-  .controls {
-    margin-top: 10px;
+  /* Ajuste para os botões das seções 2-6 */
+  #section-2 .controls, 
+  #section-3 .controls, 
+  #section-4 .controls, 
+  #section-5 .controls, 
+  #section-6 .controls {
+    margin-top: 5px; /* Mais próximo do player */
+    display: flex;
+    flex-direction: row; /* Garantir que estejam na horizontal */
+    justify-content: center;
+    align-items: center;
   }
 }
 .player .play {
