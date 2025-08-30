@@ -183,12 +183,25 @@ button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
   margin-left: 3%;
 }
 
-/* Controle separado para os botões nas seções específicas */
-#section-3 .controls,
-#section-4 .controls,
-#section-5 .controls,
+/* Controles individuais para os botões em cada seção */
+/* Seção 3 - Born Again */
+#section-3 .controls {
+  margin-left: 12%; /* Ajuste este valor conforme necessário */
+}
+
+/* Seção 4 - The Voice */
+#section-4 .controls {
+  margin-left: 12%; /* Ajuste este valor conforme necessário */
+}
+
+/* Seção 5 - No More Chains */
+#section-5 .controls {
+  margin-left: 12%; /* Ajuste este valor conforme necessário */
+}
+
+/* Seção 6 - Silence */
 #section-6 .controls {
-  margin-left: 12%; /* Valor inicial, ajuste conforme necessário */
+  margin-left: 12%; /* Ajuste este valor conforme necessário */
 }
 
 /* Layout para telas pequenas (mobile) */
