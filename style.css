@@ -224,8 +224,8 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 12px;
-  width: min(420px, 40vw);
-  margin: 0;
+  width: min(420px, 90%);
+  margin: 0 auto;
   padding: 10px 12px;
   background: rgba(0,0,0,0.55);
   border: 1px solid rgba(178,255,79,0.6);
@@ -234,11 +234,29 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   backdrop-filter: blur(4px);
 }
 
+/* Título da música visível e centralizado */
+.music-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #b2ff4f;
+  text-align: center;
+  margin-bottom: 30px;
+  width: 100%;
+  visibility: visible;
+  position: relative;
+  display: block;
+}
+
 /* Ajustes do player para celular */
 @media (max-width: 480px) {
+  .music-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
   .player {
-    width: min(300px, 90vw);
-    margin: 0 auto 10px auto;
+    width: min(300px, 90%);
+    margin: 0 auto 20px auto;
     display: grid;
     grid-template-columns: auto 1fr; /* Manter layout original */
     grid-template-rows: auto;
@@ -255,25 +273,24 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    margin-top: 20px;
   }
   
-  /* Ajuste para os botões das seções 2-6 */
-  #section-2 .controls, 
-  #section-3 .controls, 
-  #section-4 .controls, 
-  #section-5 .controls, 
-  #section-6 .controls {
-    margin-top: 0; /* Sem margem superior */
+  /* Ajuste para os botões das seções com player de áudio */
+  .page-audio .controls {
     display: flex;
-    flex-direction: column; /* Botões na vertical */
+    flex-direction: row; /* Botões na horizontal */
     justify-content: center;
     align-items: center;
-    gap: 15px; /* Espaçamento entre os botões */
+    gap: 20px; /* Espaçamento entre os botões */
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  .page-audio .controls .btn {
     transform: none; /* Sem rotação */
+    min-width: 100px;
   }
 }
 .player .play {
