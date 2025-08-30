@@ -176,18 +176,32 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   /* Ajustes para seções com player */
   .music-controls-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Alterado para column para colocar o player acima dos botões */
     align-items: center;
-    gap: 15px;
+    gap: 3px; /* Espaçamento reduzido entre player e botões */
+    justify-content: center;
   }
   
-  /* Girar apenas os players e botões das seções com players (2-6) */
+  /* Remover rotação dos players */
   .page-audio .player {
-    transform: rotate(90deg);
+    transform: none;
+    order: 1; /* Player fica acima */
+  }
+  
+  /* Ajuste para os botões nas seções com player de áudio */
+  .page-audio .controls {
+    display: flex;
+    flex-direction: row; /* Botões lado a lado */
+    gap: 15px;
+    order: 2; /* Botões ficam abaixo */
+    margin-right: 0; /* Remover margem lateral */
+    margin-top: 3px; /* Pequeno espaçamento entre player e botões */
+    justify-content: center; /* Centralizar os botões */
+    width: 100%;
   }
   
   .page-audio .controls .btn {
-    transform: rotate(90deg);
+    transform: rotate(90deg); /* Mesma rotação do botão Enter */
   }
   
   /* Estilo consistente para todas as seções */
@@ -213,8 +227,8 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 12px;
-  width: min(420px, 40vw);
-  margin: 0;
+  width: min(420px, 90%);
+  margin: 0 auto;
   padding: 10px 12px;
   background: rgba(0,0,0,0.55);
   border: 1px solid rgba(178,255,79,0.6);
@@ -223,11 +237,26 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   backdrop-filter: blur(4px);
 }
 
+/* Título da música - oculto conforme solicitado */
+.music-title {
+  display: none;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  margin: 0;
+  padding: 0;
+}
+
 /* Ajustes do player para celular */
 @media (max-width: 480px) {
+  .music-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
   .player {
-    width: min(300px, 90vw);
-    margin: 0 auto 10px auto;
+    width: min(300px, 90%);
+    margin: 0 auto 20px auto;
     display: grid;
     grid-template-columns: auto 1fr; /* Manter layout original */
     grid-template-rows: auto;
@@ -244,25 +273,24 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    margin-top: 20px;
   }
   
-  /* Ajuste para os botões das seções 2-6 */
-  #section-2 .controls, 
-  #section-3 .controls, 
-  #section-4 .controls, 
-  #section-5 .controls, 
-  #section-6 .controls {
-    margin-top: 5px; /* Mais próximo do player */
+  /* Ajuste para os botões das seções com player de áudio */
+  .page-audio .controls {
     display: flex;
-    flex-direction: column; /* Botões na vertical */
+    flex-direction: row; /* Botões na horizontal */
     justify-content: center;
     align-items: center;
-    gap: 15px; /* Espaçamento entre os botões */
-    transform: rotate(90deg); /* Rotacionar os botões para vertical */
+    gap: 20px; /* Espaçamento entre os botões */
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  .page-audio .controls .btn {
+    transform: none; /* Sem rotação */
+    min-width: 100px;
   }
 }
 .player .play {
@@ -365,6 +393,7 @@ button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
     width: min(70vw, 250px); /* Tamanho reduzido para celulares */
     margin-bottom: 15px;
   }
+}
   
   /* Ajustes adicionais para garantir responsividade em simulação de celular */
   @media (max-width: 480px) {
@@ -447,7 +476,7 @@ button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
     align-items: start;
     justify-items: start;
     gap: 8px;
-  }a
+  }
   .player {
     margin-top: 0;
     width: min(300px, 80vw);
