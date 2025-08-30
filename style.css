@@ -62,11 +62,6 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
     justify-content: center;
     align-items: center;
   }
-  
-  /* Rotação para os botões ficarem em pé */
-  .btn {
-    transform: rotate(90deg);
-  }
 }
 
 /* Classes para posicionamento do player e controles */
@@ -95,6 +90,17 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   flex-direction: column;
   align-items: center;
   width: 100%;
+  position: relative;
+}
+
+/* Container fixo para players e botões na versão desktop */
+@media (min-width: 481px) {
+  .music-controls-container {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 10%;
+  }
 }
 
 .music-title {
@@ -175,6 +181,15 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
     gap: 15px;
   }
   
+  /* Girar apenas os players e botões das seções com players (2-6) */
+  .page-audio .player {
+    transform: rotate(90deg);
+  }
+  
+  .page-audio .controls .btn {
+    transform: rotate(90deg);
+  }
+  
   /* Estilo consistente para todas as seções */
   #section-7 .controls, #section-8 .controls {
     position: static;
@@ -184,6 +199,11 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
     gap: 15px;
     align-items: center;
     margin-top: 20px;
+  }
+  
+  /* Remover rotação dos botões nas seções 7 e 8 */
+  #section-7 .btn, #section-8 .btn {
+    transform: none;
   }
 }
 
@@ -208,7 +228,6 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   .player {
     width: min(300px, 90vw);
     margin: 0 auto 10px auto;
-    transform: rotate(90deg); /* Rotacionar para ficar em pé */
     display: grid;
     grid-template-columns: auto 1fr; /* Manter layout original */
     grid-template-rows: auto;
