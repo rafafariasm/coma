@@ -32,38 +32,6 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   gap: 16px;
 }
 
-/* Ajustes específicos para celular */
-@media (max-width: 480px) {
-  .overlay {
-    grid-template-rows: auto 1fr auto;
-    align-items: center;
-    justify-items: center;
-    padding: 20px 15px 40px 15px;
-  }
-  
-  .music-page-layout {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  .title-anchor {
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 1.2rem;
-  }
-  
-  /* Posicionamento específico para seções 7 e 8 */
-  #section-7 .overlay, #section-8 .overlay {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
 /* Classes para posicionamento do player e controles */
 .centered-layout {
   justify-items: center;
@@ -90,17 +58,6 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   flex-direction: column;
   align-items: center;
   width: 100%;
-  position: relative;
-}
-
-/* Container fixo para players e botões na versão desktop */
-@media (min-width: 481px) {
-  .music-controls-container {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 10%;
-  }
 }
 
 .music-title {
@@ -156,142 +113,20 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
 }
 .controls.end { justify-content: flex-start; }
 
-/* Ajustes para botões em celular */
-@media (max-width: 480px) {
-  .controls {
-    justify-content: center;
-    width: 100%;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row; /* Botões lado a lado */
-    gap: 15px;
-    align-items: center;
-  }
-  
-  .btn {
-    min-width: 80px;
-    text-align: center;
-  }
-  
-  /* Ajustes para seções com player */
-  .music-controls-container {
-    display: flex;
-    flex-direction: column; /* Alterado para column para colocar o player acima dos botões */
-    align-items: center;
-    gap: 3px; /* Espaçamento reduzido entre player e botões */
-    justify-content: center;
-  }
-  
-  /* Remover rotação dos players */
-  .page-audio .player {
-    transform: none;
-    order: 1; /* Player fica acima */
-  }
-  
-  /* Ajuste para os botões nas seções com player de áudio */
-  .page-audio .controls {
-    display: flex;
-    flex-direction: row; /* Botões lado a lado */
-    gap: 15px;
-    order: 2; /* Botões ficam abaixo */
-    margin-right: 0; /* Remover margem lateral */
-    margin-top: 3px; /* Pequeno espaçamento entre player e botões */
-    justify-content: center; /* Centralizar os botões */
-    width: 100%;
-  }
-  
-  .page-audio .controls .btn {
-    transform: rotate(90deg); /* Mesma rotação do botão Enter */
-  }
-  
-  /* Estilo consistente para todas as seções */
-  #section-7 .controls, #section-8 .controls {
-    position: static;
-    transform: none;
-    display: flex;
-    flex-direction: row; /* Botões lado a lado */
-    gap: 15px;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  /* Remover rotação dos botões nas seções 7 e 8 */
-  #section-7 .btn, #section-8 .btn {
-    transform: none;
-  }
-}
-
 /* ===== Player minimalista sem botão de download ===== */
 .player {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 12px;
-  width: min(420px, 90%);
-  margin: 0 auto;
+  width: min(420px, 40vw);
+  margin: 0;
   padding: 10px 12px;
   background: rgba(0,0,0,0.55);
   border: 1px solid rgba(178,255,79,0.6);
   border-radius: 16px;
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
-}
-
-/* Título da música - oculto conforme solicitado */
-.music-title {
-  display: none;
-  visibility: hidden;
-  height: 0;
-  width: 0;
-  margin: 0;
-  padding: 0;
-}
-
-/* Ajustes do player para celular */
-@media (max-width: 480px) {
-  .music-title {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .player {
-    width: min(300px, 90%);
-    margin: 0 auto 20px auto;
-    display: grid;
-    grid-template-columns: auto 1fr; /* Manter layout original */
-    grid-template-rows: auto;
-    gap: 10px;
-  }
-  
-  .player .track {
-    width: 100%;
-  }
-  
-  .music-controls-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-top: 20px;
-  }
-  
-  /* Ajuste para os botões das seções com player de áudio */
-  .page-audio .controls {
-    display: flex;
-    flex-direction: row; /* Botões na horizontal */
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* Espaçamento entre os botões */
-    margin-top: 15px;
-    width: 100%;
-  }
-  
-  .page-audio .controls .btn {
-    transform: none; /* Sem rotação */
-    min-width: 100px;
-  }
 }
 .player .play {
   width: 44px; height: 44px; border-radius: 999px;
@@ -338,137 +173,6 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
 /* Acessibilidade e utilidades */
 button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-
-/* Âncora invisível para alinhamento consistente */
-.anchor-invisible {
-  visibility: hidden;
-  height: 0;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  font-size: 0;
-  line-height: 0;
-  position: relative;
-  display: block;
-  text-align: left;
-  margin-left: 3%;
-  margin-bottom: 10px;
-}
-
-/* Título invisível para servir como âncora */
-.title-anchor {
-  visibility: hidden;
-  height: 0;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  left: 3%;
-  text-align: left;
-  font-size: 0;
-  line-height: 0;
-  opacity: 0;
-}
-
-/* Media queries para dispositivos móveis */
-@media (max-width: 768px) {
-  /* Ajuste do botão ENTER na seção 1 */
-  #section-1 .btn-enter {
-    position: absolute;
-    bottom: calc(10vh + 20px); /* 2 dedos acima da parte inferior */
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  /* Ajuste do layout para dispositivos móveis */
-  .music-controls-container {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  
-  /* Ajuste do player para dispositivos móveis */
-  .player {
-    width: min(70vw, 250px); /* Tamanho reduzido para celulares */
-    margin-bottom: 15px;
-  }
-}
-  
-  /* Ajustes adicionais para garantir responsividade em simulação de celular */
-  @media (max-width: 480px) {
-    /* Posicionamento do player e controles */
-    .overlay {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    /* Ajuste para posicionar abaixo do texto "The voice that betrays" */
-    .music-controls-container {
-      position: absolute;
-      top: 55%; /* Posicionado abaixo do texto */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .player {
-      width: min(90vw, 280px);
-      margin: 0 auto 15px auto;
-    }
-    
-    .controls {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-    }
-    
-    .btn {
-      min-width: 80px;
-      margin: 0 10px;
-    }
-    
-    /* Ajuste para o botão ENTER em telas muito pequenas */
-    #section-1 .btn-enter {
-      bottom: 15vh;
-    }
-  }
-}
-
-/* Posicionamento específico para seções 3, 4, 5 e 6 */
-#section-3 .music-controls-container,
-#section-4 .music-controls-container,
-#section-5 .music-controls-container,
-#section-6 .music-controls-container {
-  align-items: flex-start;
-  margin-left: 3%;
-}
-
-/* Controles individuais para os botões em cada seção */
-/* Seção 3 - Born Again */
-#section-3 .controls {
-  margin-left: 12%; /* Ajuste este valor conforme necessário */
-}
-
-/* Seção 4 - The Voice */
-#section-4 .controls {
-  margin-left: 12%; /* Ajuste este valor conforme necessário */
-}
-
-/* Seção 5 - No More Chains */
-#section-5 .controls {
-  margin-left: 11%; /* Ajuste este valor conforme necessário */
-}
-
-/* Seção 6 - Silence */
-#section-6 .controls {
-  margin-left: 10%; /* Ajuste este valor conforme necessário */
-}
 
 /* Layout para telas pequenas (mobile) */
 @media (max-width: 768px) {
