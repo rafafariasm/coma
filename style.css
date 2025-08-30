@@ -176,29 +176,18 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   /* Ajustes para seções com player */
   .music-controls-container {
     display: flex;
-    flex-direction: row; /* Alterado para row para colocar os botões ao lado do player */
+    flex-direction: column;
     align-items: center;
     gap: 15px;
-    justify-content: center;
   }
   
-  /* Girar apenas os players das seções com players (2-6) */
+  /* Girar apenas os players e botões das seções com players (2-6) */
   .page-audio .player {
     transform: rotate(90deg);
-    order: 2; /* Player fica à direita */
-  }
-  
-  /* Ajuste para os botões nas seções com player de áudio */
-  .page-audio .controls {
-    display: flex;
-    flex-direction: column; /* Botões na vertical */
-    gap: 15px;
-    order: 1; /* Botões ficam à esquerda */
-    margin-right: 10px; /* Espaço entre os botões e o player */
   }
   
   .page-audio .controls .btn {
-    transform: none; /* Sem rotação nos botões */
+    transform: rotate(90deg);
   }
   
   /* Estilo consistente para todas as seções */
@@ -224,8 +213,8 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 12px;
-  width: min(420px, 90%);
-  margin: 0 auto;
+  width: min(420px, 40vw);
+  margin: 0;
   padding: 10px 12px;
   background: rgba(0,0,0,0.55);
   border: 1px solid rgba(178,255,79,0.6);
@@ -234,29 +223,11 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   backdrop-filter: blur(4px);
 }
 
-/* Título da música visível e centralizado */
-.music-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #b2ff4f;
-  text-align: center;
-  margin-bottom: 30px;
-  width: 100%;
-  visibility: visible;
-  position: relative;
-  display: block;
-}
-
 /* Ajustes do player para celular */
 @media (max-width: 480px) {
-  .music-title {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-  }
-  
   .player {
-    width: min(300px, 90%);
-    margin: 0 auto 20px auto;
+    width: min(300px, 90vw);
+    margin: 0 auto 10px auto;
     display: grid;
     grid-template-columns: auto 1fr; /* Manter layout original */
     grid-template-rows: auto;
@@ -273,24 +244,25 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
-    margin-top: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   
-  /* Ajuste para os botões das seções com player de áudio */
-  .page-audio .controls {
+  /* Ajuste para os botões das seções 2-6 */
+  #section-2 .controls, 
+  #section-3 .controls, 
+  #section-4 .controls, 
+  #section-5 .controls, 
+  #section-6 .controls {
+    margin-top: 5px; /* Mais próximo do player */
     display: flex;
-    flex-direction: row; /* Botões na horizontal */
+    flex-direction: column; /* Botões na vertical */
     justify-content: center;
     align-items: center;
-    gap: 20px; /* Espaçamento entre os botões */
-    margin-top: 15px;
-    width: 100%;
-  }
-  
-  .page-audio .controls .btn {
-    transform: none; /* Sem rotação */
-    min-width: 100px;
+    gap: 15px; /* Espaçamento entre os botões */
+    transform: rotate(90deg); /* Rotacionar os botões para vertical */
   }
 }
 .player .play {
