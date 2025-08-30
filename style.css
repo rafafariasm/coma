@@ -40,6 +40,23 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
     justify-items: center;
     padding-bottom: 40px;
   }
+  
+  /* Posicionamento específico para seções 7 e 8 */
+  #section-7 .overlay, #section-8 .overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  #section-7 .controls, #section-8 .controls {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 /* Classes para posicionamento do player e controles */
@@ -278,112 +295,55 @@ button:focus-visible { outline: 2px dashed #b2ff4f; outline-offset: 3px; }
     transform: translateX(-50%);
   }
   
-  /* Rotação de 90° para player e botões na seção 2 */
-  #section-2 .player,
-  #section-2 .controls {
-    transform: rotate(90deg);
-    margin-bottom: 30px;
-  }
-  
-  /* Rotação de 90° para player e botões nas seções 3, 4, 5 e 6 */
-  #section-3 .player, #section-4 .player, #section-5 .player, #section-6 .player,
-  #section-3 .controls, #section-4 .controls, #section-5 .controls, #section-6 .controls {
-    transform: rotate(90deg);
-  }
-  
-  /* Controles de posicionamento para player nas seções 3, 4, 5 e 6 */
-  #section-3 .player-centered, #section-4 .player-centered, 
-  #section-5 .player-centered, #section-6 .player-centered {
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 30px; /* Reduzido para aproximar os botões */
-    position: relative;
-    /* Valores iniciais para posicionamento */
-    --player-top: 30px; /* Movido para baixo */
-    --player-left: 0;
-    top: var(--player-top);
-    left: var(--player-left);
-  }
-  
-  /* Controles específicos para cada seção */
-  #section-3 .player-centered { --player-top: 30px; --player-left: 0px; }
-  #section-4 .player-centered { --player-top: 30px; --player-left: 0px; }
-  #section-5 .player-centered { --player-top: 30px; --player-left: 0px; }
-  #section-6 .player-centered { --player-top: 30px; --player-left: 0px; }
-  
-  /* Controles separados para botões nas seções 3, 4, 5 e 6 */
-  #section-3 .controls-centered, #section-4 .controls-centered, 
-  #section-5 .controls-centered, #section-6 .controls-centered {
-    margin-top: 0; /* Removido para alinhar com o player */
-    position: relative;
-    /* Valores iniciais para posicionamento */
-    --controls-top: 0;
-    --controls-left: 0;
-    top: var(--controls-top);
-    left: var(--controls-left);
-  }
-  
-  /* Controles específicos para cada seção */
-  #section-3 .controls-centered { --controls-top: 0px; --controls-left: 0px; }
-  #section-4 .controls-centered { --controls-top: 0px; --controls-left: 0px; }
-  #section-5 .controls-centered { --controls-top: 0px; --controls-left: 0px; }
-  #section-6 .controls-centered { --controls-top: 0px; --controls-left: 0px; }
-  
-  /* Alinhamento dos botões com os players */
-  #section-3 .music-controls-container,
-  #section-4 .music-controls-container,
-  #section-5 .music-controls-container,
-  #section-6 .music-controls-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Rotação vertical e centralização dos botões nas seções 7 e 8 */
-  #section-7 .controls, #section-8 .controls {
-    transform: rotate(90deg);
-    justify-content: center;
-    position: relative;
-    /* Valores iniciais para posicionamento */
-    --controls-left: 0;
-    left: var(--controls-left);
-  }
-  
-  /* Controles específicos para cada seção */
-  #section-7 .controls { --controls-left: 0px; }
-  #section-8 .controls { --controls-left: 0px; }
-  
   /* Ajuste do layout para dispositivos móveis */
   .music-controls-container {
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
   
   /* Ajuste do player para dispositivos móveis */
   .player {
     width: min(70vw, 250px); /* Tamanho reduzido para celulares */
+    margin-bottom: 15px;
   }
   
   /* Ajustes adicionais para garantir responsividade em simulação de celular */
   @media (max-width: 480px) {
-    .player {
-      width: min(90vw, 280px);
-      transform-origin: center;
+    /* Posicionamento do player e controles */
+    .overlay {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     
-    .controls {
-      transform-origin: center;
-    }
-    
-    /* Ajuste fino para cada seção */
-    #section-3 .music-controls-container,
-    #section-4 .music-controls-container,
-    #section-5 .music-controls-container,
-    #section-6 .music-controls-container {
+    /* Ajuste para posicionar abaixo do texto "The voice that betrays" */
+    .music-controls-container {
+      position: absolute;
+      top: 55%; /* Posicionado abaixo do texto */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+    
+    .player {
+      width: min(90vw, 280px);
+      margin: 0 auto 15px auto;
+    }
+    
+    .controls {
+      display: flex;
+      justify-content: center;
       width: 100%;
+    }
+    
+    .btn {
+      min-width: 80px;
+      margin: 0 10px;
     }
     
     /* Ajuste para o botão ENTER em telas muito pequenas */
