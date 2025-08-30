@@ -32,9 +32,24 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   gap: 16px;
 }
 
-/* Nova classe para centralizar o player na página 'COMA' */
+/* Classes para posicionamento do player e controles */
 .centered-layout {
   justify-items: center;
+}
+
+/* Classe para centralizar o player */
+.player-centered {
+  margin-inline: auto;
+}
+
+/* Classe para centralizar os controles */
+.controls-centered {
+  justify-content: center;
+}
+
+/* Classe para alinhar à direita */
+.controls-right {
+  justify-content: flex-end;
 }
 
 /* ===== Botões ===== */
