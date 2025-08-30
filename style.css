@@ -32,6 +32,16 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   gap: 16px;
 }
 
+/* Ajustes específicos para celular */
+@media (max-width: 480px) {
+  .overlay {
+    grid-template-rows: 1fr auto auto;
+    align-items: center;
+    justify-items: center;
+    padding-bottom: 40px;
+  }
+}
+
 /* Classes para posicionamento do player e controles */
 .centered-layout {
   justify-items: center;
@@ -113,6 +123,20 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
 }
 .controls.end { justify-content: flex-start; }
 
+/* Ajustes para botões em celular */
+@media (max-width: 480px) {
+  .controls {
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .btn {
+    min-width: 80px;
+    text-align: center;
+  }
+}
+
 /* ===== Player minimalista sem botão de download ===== */
 .player {
   display: grid;
@@ -127,6 +151,22 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, U
   border-radius: 16px;
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
+}
+
+/* Ajustes do player para celular */
+@media (max-width: 480px) {
+  .player {
+    width: min(300px, 90vw);
+    margin: 0 auto;
+  }
+  
+  .music-controls-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 .player .play {
   width: 44px; height: 44px; border-radius: 999px;
