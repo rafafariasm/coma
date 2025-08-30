@@ -19,6 +19,18 @@ document.addEventListener('click', (e) => {
     // Evita abrir menu do botão direito nos players
     if (b.classList.contains('play')) e.preventDefault();
 
+    // Verifica se o botão está na seção 9 (vídeo do YouTube)
+    const section9 = b.closest('#section-9');
+    if (section9) {
+        // Encontra o iframe do YouTube e para o vídeo
+        const youtubeIframe = qs('iframe.yt', section9);
+        if (youtubeIframe) {
+            // Recarrega o iframe com o mesmo src para parar o vídeo
+            const currentSrc = youtubeIframe.src;
+            youtubeIframe.src = currentSrc;
+        }
+    }
+
     const next = b?.dataset?.next;
     const prev = b?.dataset?.prev;
     const home = b?.dataset?.home;
